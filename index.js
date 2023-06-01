@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   pool.query('SELECT NOW()', (err, result) => {
     if (err) {
       console.error('Error executing query:', err);
-      res.status(500).send('Error executing query');
+      res.status(500).send('Error executing query:', err);
     } else {
       res.send(`Current time: ${result.rows[0].now}`);
     }
