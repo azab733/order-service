@@ -2,7 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5432;
 
 const pool = new Pool({
   vendor: process.env.DB_VENDOR,
