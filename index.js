@@ -5,13 +5,13 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 const pool = new Pool({
-  vendor: process.env.DB_VENDOR,
-  address: process.env.DB_ADDR,
+  host: process.env.DB_ADDR,
   port: process.env.DB_PORT,
   database: process.env.DB_DATABASE,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
 });
+
 
 pool.connect()
   .then(client => {
