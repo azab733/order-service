@@ -13,12 +13,22 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
+pool.connect()
+  .then(client => {
+    console.log('Connected to PostgreSQL');
+    client.release();
+  })
+  .catch(err => {
+    console.error('Error connecting to PostgreSQL', err);
+  });
+
 app.get('/', (req, res) => {
   pool.query('SELECT NOW()', (err, result) => {
     if (err) {
       console.log('Error executing query:', err);
       res.status(500).send('Error executing query');
     } else {
+      console.log("Query success");
       res.send(`Current time: ${result.rows[0].now}`);
     }
   });
